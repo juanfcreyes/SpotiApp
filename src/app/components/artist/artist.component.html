@@ -1,0 +1,40 @@
+<div class="container top30">
+  <div class="row">
+    <diV class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> <img [src]="artista.images | sinfoto:1" class="img-fluid rounded-circle img250"> </diV>
+    <diV class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <h2>{{ artista.name }}</h2>
+      <div> <a [href]="artista.external_urls?.spotify" target="_blank" class="btn btn-success btn-block"> Abrir con Spotify  </a>
+        <button class="btn btn-success btn-block" [routerLink]="['/search']">Regresar </button>
+      </div>
+    </diV>
+  </div>
+  <div>
+    <h3> Top Tracks </h3>
+    <hr>
+    <br>
+    <ul class="list-unstyled">
+      <li class="media" *ngFor="let track of tracks"> <img class="align-self-center mr-3 img135" [src]="track.album.images | sinfoto">
+        <div class="media-body">
+          <div class="row">
+            <div class="col-md-4">
+              <p> {{ track.name }} </p>
+              <p> Duraci&oacute;n: <span>{{ track.duration_ms | minutos }} min</span></p>
+              <p> Popularidad: {{ track.popularity }}%</p>
+              <p> Album: {{ track.album.name}} </p>
+            </div>
+            <div class="col-md-4">
+              <iframe [src]="track.uri | domseguro:urlTrack" width="400" height="80" frameborder="0" allowtransparency="true"></iframe>
+            </div>
+          </div>
+          <!--
+          <audio controls>
+            <source [src]="track.preview_url">
+            Funcionalidad no compatible con la versi&oacute;n del navegador
+          </audio>
+-->
+          <br>
+          <hr> </div>
+      </li>
+    </ul>
+  </div>
+</div>
